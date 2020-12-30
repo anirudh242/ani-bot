@@ -4,7 +4,7 @@ module.exports = {
 	name: "rps",
 	description: "Play Rock, Paper, Scissors with the bot. ",
 
-	async execute(message, args) {
+	async execute(message, args, client) {
 		/*
         RPS PvP COMMAND STEPS-
         1) User gives command mentioning another user
@@ -57,10 +57,55 @@ module.exports = {
 			}
 		}
 
+		function pvpRps() {
+			/* 	const user1 = message.author;
+			const user2 = message.mentions.members.first();
+
+			let filter = (m) =>
+				m.mentions.members.first() === message.mentions.members.first();
+
+			message.channel
+				.send(
+					`${user2}, do you want to play with ${user1}? (Reply with yes or no.)`
+				)
+				.then(() => {
+					message.channel
+						.awaitMessages(filter, {
+							max: 1,
+							time: 30000,
+							errors: ["time"],
+						})
+						.then((message) => {
+							message = message.first();
+							if (
+								message.content.toUpperCase() == "YES" ||
+								message.content.toUpperCase() == "Y"
+							) {
+								message.channel.send(`ok cool`);
+							} else if (
+								message.content.toUpperCase() == "NO" ||
+								message.content.toUpperCase() == "N"
+							) {
+								message.channel.send(`Terminated`);
+							} else {
+								message.channel.send(
+									`Terminated: Invalid Response`
+								);
+							}
+						});
+				}); */
+
+			message.channel.send("PvP is currently not implemented!");
+
+			/* client.users.fetch("384683911873167360").then((user) => {
+				user.send("test");
+			}); */
+		}
+
 		if (!message.mentions.members.first()) {
 			pveRps();
 		} else {
-			message.channel.send("Test");
+			pvpRps();
 		}
 	},
 };

@@ -1,14 +1,17 @@
 const Discord = require("discord.js");
-
 const client = new Discord.Client();
-
 const prefix = "_";
-
 const fs = require("fs");
-
 const embedFooter = "Bot made by ani#1481. DM him if you have a problem.";
-
 client.commands = new Discord.Collection();
+
+// Filter
+const Filter = require("bad-words");
+const filter = new Filter();
+let removeWords = ["hells", "hell", "shit", "shits"];
+filter.removeWords(...removeWords);
+const ronnyImage = "./ronny.png";
+const ronnyTheRapper = new Discord.MessageAttachment(ronnyImage);
 
 const commandFiles = fs
 	.readdirSync("./commands/")
@@ -37,7 +40,9 @@ function catchErr(err, message) {
 }
 
 client.on("message", (message) => {
-	if (message.content.startsWith(prefix) || message.author.bot) {
+	if (filter.isProfane(message.content)) {
+		message.reply(ronnyTheRapper);
+	} else if (message.content.startsWith(prefix) || message.author.bot) {
 		const args = message.content.slice(prefix.length).split(/ +/);
 		const command = args.shift().toLowerCase();
 
@@ -80,9 +85,7 @@ client.on("message", (message) => {
 						.execute(message, args, embedFooter);
 					break;
 				case "rps":
-					client.commands
-						.get("rps")
-						.execute(message, args, embedFooter);
+					client.commands.get("rps").execute(message, args, client);
 					break;
 				case "nuke":
 				case "delete":
@@ -120,7 +123,7 @@ client.on("message", (message) => {
 				case "echo":
 					client.commands
 						.get("say")
-						.execute(message, args, embedFooter);
+						.execute(message, args, embedFooter, filter);
 					break;
 			}
 		} catch (err) {
@@ -137,3 +140,6 @@ client.on("message", (message) => {
 });
 
 client.login(process.env.TOKEN);
+
+// For test bot-
+//client.login("NzkzNzE5NTI0MjI2MzY3NTEy.X-wW6Q.WGbDD_NAAP5qho5D49i_7M6KtwQ");
