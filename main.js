@@ -41,6 +41,7 @@ function catchErr(err, message) {
 
 client.on("message", (message) => {
 	if (filter.isProfane(message.content)) {
+		message.delete().catch();
 		message.reply(ronnyTheRapper);
 	} else if (message.content.startsWith(prefix) || message.author.bot) {
 		const args = message.content.slice(prefix.length).split(/ +/);
