@@ -1,5 +1,5 @@
+"use strict";
 //! fix this later
-
 /* const yts = require("yt-search");
 
 module.exports = {

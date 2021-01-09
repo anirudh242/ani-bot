@@ -1,5 +1,5 @@
+"use strict";
 // TODO: Fix later
-
 /*const autoRole = require("discord-auto-role");
 const bot = require("discord.js");
 
