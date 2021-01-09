@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const embedFooter: String =
 	'Bot made by ani#1481. DM him if you have a problem.';
-const prefix: String = '>';
+const prefix: String = '_';
 client.commands = new Discord.Collection();
 
 // FS
@@ -130,7 +130,7 @@ client.on('message', (message: any) => {
 	}
 });
 
-//client.login(process.env.TOKEN);
+client.login(process.env.TOKEN);
 
 // For test bot-
-client.login('NzkzNzE5NTI0MjI2MzY3NTEy.X-wW6Q.WGbDD_NAAP5qho5D49i_7M6KtwQ');
+// client.login('NzkzNzE5NTI0MjI2MzY3NTEy.X-wW6Q.WGbDD_NAAP5qho5D49i_7M6KtwQ');
