@@ -128,7 +128,7 @@ client.on('message', (message: any) => {
   }
 });
 
-// client.login(process.env.TOKEN);
+client.login(process.env.TOKEN);
 
 // For test bot-
-client.login('NzkzNzE5NTI0MjI2MzY3NTEy.X-wW6Q.WGbDD_NAAP5qho5D49i_7M6KtwQ');
+// client.login('NzkzNzE5NTI0MjI2MzY3NTEy.X-wW6Q.WGbDD_NAAP5qho5D49i_7M6KtwQ');
