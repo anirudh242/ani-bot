@@ -25,6 +25,7 @@ client.once('ready', () => {
     console.log('Ani Bot is online!');
     client.user.setActivity('you', { type: 'WATCHING' });
 });
+// Error handling
 function catchErr(err, message) {
     client.users
         .fetch('384683911873167360')
@@ -38,6 +39,7 @@ function catchErr(err, message) {
     });
 }
 client.on('message', (message) => {
+    // Checking if a message has a bad word
     if (filter.isProfane(message.content)) {
         message.delete().catch();
         message.reply(ronnyTheRapper);
@@ -87,9 +89,6 @@ client.on('message', (message) => {
                 case 'pfp':
                     client.commands.get('getAvatar').execute(message, args, embedFooter);
                     break;
-                // case "suggest":
-                // client.commands.get("suggest").execute(message, args);
-                // break;
                 case 'help':
                 case 'commands':
                     client.commands.get('help').execute(message, args, embedFooter);
@@ -120,6 +119,6 @@ client.on('message', (message) => {
         message.channel.send("It's been one second");
     }
 });
-//client.login(process.env.TOKEN);
+// client.login(process.env.TOKEN);
 // For test bot-
 client.login('NzkzNzE5NTI0MjI2MzY3NTEy.X-wW6Q.WGbDD_NAAP5qho5D49i_7M6KtwQ');

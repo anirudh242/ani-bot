@@ -1,26 +1,33 @@
 module.exports = {
 	name: 'meme',
-	description: '',
+	description: 'Sends a meme',
 
-	async execute(
-		message: { channel: { send: (arg0: any) => void } },
-		args: any,
-		embedFooter: any
-	) {
-		const subreddits = ['dankmemes', 'memes'];
-		const randomSub = subreddits[Math.floor(Math.random() * subreddits.length)];
-		const randomPuppy = require('random-puppy');
+	execute(message: any, args: any, embedFooter: string) {
+		const got = require('got');
+
 		const { MessageEmbed } = require('discord.js');
+		const embed = new MessageEmbed();
 
-		const meme = await randomPuppy(randomSub);
+		got('https://www.reddit.com/r/memes/random/.json')
+			.then((response: { body: string }) => {
+				const [list] = JSON.parse(response.body);
+				const [post] = list.data.children;
 
-		let memeEmbed = new MessageEmbed()
-			.setColor('#32a852')
-			.setTitle(`From r/${randomSub}`)
-			.setURL(`https://reddit.com/r/${randomSub}`)
-			.setImage(meme)
-			.setFooter(embedFooter);
+				const permalink = post.data.permalink;
+				const memeUrl = `https://reddit.com${permalink}`;
+				const memeImage = post.data.url;
+				const memeTitle = post.data.title;
+				const memeUpvotes = post.data.ups;
+				const memeNumComments = post.data.num_comments;
 
-		message.channel.send(memeEmbed);
+				embed.setTitle(`${memeTitle}`);
+				embed.setURL(`${memeUrl}`);
+				embed.setColor('RANDOM');
+				embed.setImage(memeImage);
+				embed.setFooter(`👍 ${memeUpvotes} 💬 ${memeNumComments}`);
+
+				message.channel.send(embed);
+			})
+			.catch(console.error);
 	},
 };
