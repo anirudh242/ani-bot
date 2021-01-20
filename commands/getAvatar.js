@@ -14,16 +14,7 @@ module.exports = {
     description: "Gets the user's avatar.",
     execute(message, args, embedFooter) {
         return __awaiter(this, void 0, void 0, function* () {
-            let user = !args[0]
-                ? message.author
-                : yield findMember(args[0], message.guild);
-            // Create embed and send user the avatar with links
-            let embed = new MessageEmbed()
-                .setTitle(`Avatar for ${user.tag}`)
-                .setImage(`${user.displayAvatarURL()}?size=1024`)
-                .setColor('#FFFF')
-                .setFooter(embedFooter);
-            return message.channel.send(embed);
+            // Get user
             function findMember(query, guild) {
                 return __awaiter(this, void 0, void 0, function* () {
                     let member = null;
@@ -52,6 +43,16 @@ module.exports = {
                     return member.user;
                 });
             }
+            let user = !args[0]
+                ? message.author
+                : yield findMember(args[0], message.guild);
+            // Create embed and send user the avatar with links
+            let embed = new MessageEmbed()
+                .setTitle(`Avatar for ${user.tag}`)
+                .setImage(`${user.displayAvatarURL()}?size=1024`)
+                .setColor('#FFFF')
+                .setFooter(embedFooter);
+            return message.channel.send(embed);
         });
     },
 };

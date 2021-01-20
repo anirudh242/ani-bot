@@ -1,4 +1,7 @@
 "use strict";
+// Dotenv
+const dotenv = require('dotenv');
+dotenv.config();
 // Discord
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -30,7 +33,7 @@ function catchErr(err, message) {
     client.users
         .fetch('384683911873167360')
         .then((user) => {
-        user.send(`There was an error in channel "${message.channel}" in guild "${message.guild}".`);
+        user.send(`There was an error in channel "${message.channel}" in guild "${message.guild}".`); // DM's me if there is an error. (You probably shouldn't do this if it'll be in hundreds of servers.)
     });
     client.users
         .fetch('384683911873167360')
@@ -54,13 +57,12 @@ client.on('message', (message) => {
                 case 'cake':
                     client.commands.get('cake').execute(message, args);
                     break;
-                // TODO: fix these lol
-                // case "mute":
-                // client.commands.get("mute").execute(message, args);
-                // break;
-                // case "unmute":
-                // client.commands.get("unmute").execute(message, args);
-                // break;
+                case 'mute':
+                    client.commands.get('mute').execute(message, args);
+                    break;
+                case 'unmute':
+                    client.commands.get('unmute').execute(message, args);
+                    break;
                 case 'meme':
                 case 'memes':
                     client.commands.get('meme').execute(message, args, embedFooter);
@@ -109,16 +111,14 @@ client.on('message', (message) => {
         }
         catch (err) {
             catchErr(err, message);
-        } // Make these switch cases
-    }
-    else if (message.content.toLowerCase() == 'no u') {
-        message.channel.send('no u');
-    }
-    else if (message.content.toLowerCase() == 'one sec' ||
-        message.content.toLowerCase() == 'one second') {
-        message.channel.send("It's been one second");
+        }
+        switch (message.content.toLowerCase()) {
+            case 'no u':
+                message.channel.send('no u');
+            case 'one sec':
+            case 'one second':
+                message.channel.send("It's been one second");
+        }
     }
 });
-// client.login(process.env.TOKEN);
-// For test bot-
-client.login('NzkzNzE5NTI0MjI2MzY3NTEy.X-wW6Q.WGbDD_NAAP5qho5D49i_7M6KtwQ');
+client.login(process.env.TOKEN);

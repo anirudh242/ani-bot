@@ -6,7 +6,7 @@ module.exports = {
         const got = require('got');
         const { MessageEmbed } = require('discord.js');
         const embed = new MessageEmbed();
-        got('https://www.reddit.com/r/memes/top/random/.json')
+        got('https://www.reddit.com/r/memes/random/.json')
             .then((response) => {
             const [list] = JSON.parse(response.body);
             const [post] = list.data.children;
