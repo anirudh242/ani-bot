@@ -67,12 +67,12 @@ client.on('message', (message: any) => {
         case 'cake':
           client.commands.get('cake').execute(message, args);
           break;
-        case 'mute':
-          client.commands.get('mute').execute(message, args);
-          break;
-        case 'unmute':
-          client.commands.get('unmute').execute(message, args);
-          break;
+        // case 'mute':
+        //   client.commands.get('mute').execute(message, args);
+        //   break;
+        // case 'unmute':
+        //   client.commands.get('unmute').execute(message, args);
+        //   break;
         case 'meme':
         case 'memes':
           client.commands.get('meme').execute(message, args, embedFooter);

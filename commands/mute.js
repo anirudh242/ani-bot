@@ -9,13 +9,13 @@ module.exports = {
         const ms = require('ms');
         // TODO: Make seperate messages for these errors
         if (!mutedRole) {
-            message.channel.send(`Cannot find the muted role. Please make a role named "Muted" or "muted" and try again.`);
+            return message.channel.send(`Cannot find the muted role. Please make a role named "Muted" or "muted" and try again.`);
         }
         else if (!target) {
-            message.channel.send('Please mention a user to mute');
+            return message.channel.send('Please mention a user to mute');
         }
         else if (!args[1]) {
-            message.channel.send('Please specify an amount of time.');
+            return message.channel.send('Please specify an amount of time.');
         }
         else {
             cachedUserRoles[target.id] = target.roles.cache;
