@@ -1,3 +1,5 @@
+const talkedRecently: any = new Set();
+
 // Dotenv
 const dotenv = require('dotenv');
 dotenv.config();
@@ -7,7 +9,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const embedFooter: string =
   'Bot made by ani#1481. DM him if you have a problem.';
-const prefix: string = '>';
+const prefix: string = '_';
 client.commands = new Discord.Collection();
 
 // FS
@@ -113,20 +115,31 @@ client.on('message', (message: any) => {
           break;
         case 'say':
         case 'echo':
-          client.commands
-            .get('say')
-            .execute(message, args, embedFooter, filter);
+          client.commands.get('say').execute(message, args, embedFooter);
           break;
       }
     } catch (err) {
       catchErr(err, message);
     }
-    switch (message.content.toLowerCase()) {
-      case 'no u':
-        message.channel.send('no u');
-      case 'one sec':
-      case 'one second':
-        message.channel.send("It's been one second");
+  } else if (message.content.toLowerCase() == 'no u') {
+    message.channel.send('no u');
+  } else if (
+    message.content.toLowerCase() == 'one sec' ||
+    message.content.toLowerCase() == 'one second'
+  ) {
+    message.channel.send("It's been one second");
+  } else if (message.content.toLowerCase() == 'f') {
+    if (talkedRecently.has(message.author.id)) {
+      return null;
+    } else {
+      // the user can type the command ... your command code goes here :)
+      // Adds the user to the set so that they can't talk for a minute
+      talkedRecently.add(message.author.id);
+      setTimeout(() => {
+        // Removes the user from the set after a minute
+        talkedRecently.delete(message.author.id);
+      }, 10000);
+      return message.channel.send('F');
     }
   }
 });
