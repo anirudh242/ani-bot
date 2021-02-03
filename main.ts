@@ -57,7 +57,6 @@ function catchErr(err: string, message: { channel: any; guild: any }) {
 client.on('message', (message: any) => {
   // Checking if a message has a bad word
   if (filter.isProfane(message.content)) {
-    message.delete().catch();
     message.reply(ronnyTheRapper);
   } else if (message.content.startsWith(prefix) || message.author.bot) {
     const args = message.content.slice(prefix.length).split(/ +/);
