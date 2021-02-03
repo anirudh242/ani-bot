@@ -9,7 +9,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const embedFooter: string =
   'Bot made by ani#1481. DM him if you have a problem.';
-const prefix: string = '_';
+const prefix: string = '>';
 client.commands = new Discord.Collection();
 
 // FS
