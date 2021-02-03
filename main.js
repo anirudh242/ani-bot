@@ -7,7 +7,7 @@ dotenv.config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const embedFooter = 'Bot made by ani#1481. DM him if you have a problem.';
-const prefix = '>';
+const prefix = '_';
 client.commands = new Discord.Collection();
 // FS
 const fs = require('fs');
@@ -45,7 +45,6 @@ function catchErr(err, message) {
 client.on('message', (message) => {
     // Checking if a message has a bad word
     if (filter.isProfane(message.content)) {
-        message.delete().catch();
         message.reply(ronnyTheRapper);
     }
     else if (message.content.startsWith(prefix) || message.author.bot) {
@@ -105,9 +104,6 @@ client.on('message', (message) => {
                 case 'say':
                 case 'echo':
                     client.commands.get('say').execute(message, args, embedFooter);
-                    break;
-                case 'test':
-                    client.commands.get('test').execute(message, args, embedFooter);
                     break;
             }
         }
