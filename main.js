@@ -7,7 +7,7 @@ dotenv.config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const embedFooter = 'Bot made by ani#1481. DM him if you have a problem.';
-const prefix = '>';
+const prefix = '_';
 client.commands = new Discord.Collection();
 // FS
 const fs = require('fs');
