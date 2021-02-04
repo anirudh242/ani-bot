@@ -9,7 +9,6 @@ module.exports = {
             .setTitle('All Ani Bot Commands:')
             .addField('meme, memes:', 'Sends a meme from reddit.')
             .addField('dog, dogs, puppy:', 'Sends a cute picture of a dog/puppy from Reddit.')
-            .addField('cat, cats, kitten:', 'Sends a cute picture of a cat/kitten from Reddit.')
             .addField('rps:', 'Play Rock, Paper, Scissors with the bot.')
             .addField('nuke, delete:', 'Members who have the permissions can delete a specified amount of messages fast.')
             .addField('avatar, pfp, av:', "Sends the specified user's avatar.")

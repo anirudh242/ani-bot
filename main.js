@@ -67,17 +67,10 @@ client.on('message', (message) => {
                 case 'memes':
                     client.commands.get('meme').execute(message, args, embedFooter);
                     break;
-                case 'cute':
-                    client.commands.get('cute').execute(message, args, embedFooter);
-                    break;
                 case 'dog':
                 case 'puppy':
                 case 'dogs':
                     client.commands.get('dog').execute(message, args, embedFooter);
-                    break;
-                case 'cat':
-                case 'kitten':
-                    client.commands.get('cat').execute(message, args, embedFooter);
                     break;
                 case 'rps':
                     client.commands.get('rps').execute(message, args, client);
@@ -104,6 +97,9 @@ client.on('message', (message) => {
                 case 'say':
                 case 'echo':
                     client.commands.get('say').execute(message, args, embedFooter);
+                    break;
+                case 'ban':
+                    client.commands.get('ban').execute(message, args);
                     break;
             }
         }
