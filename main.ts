@@ -20,7 +20,7 @@ const Filter = require('bad-words');
 const filter = new Filter();
 let removeWords = ['hells', 'hell', 'shit', 'shits'];
 filter.removeWords(...removeWords);
-const ronnyImage = './ronny.png';
+const ronnyImage = './images/ronny.png';
 const ronnyTheRapper = new Discord.MessageAttachment(ronnyImage);
 
 const commandFiles = fs
